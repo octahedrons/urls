@@ -4,9 +4,9 @@ Returns a list of URLs.
 
 ## Deploy
 
-    git remote add heroku git@heroku.com:uextract.git
+    git remote add heroku git@heroku.com:urls-apps.git
     git push heroku
 
 ## Example usage
 
-https://feedbag.herokuapp.com/?url=googleonlinesecurity.blogspot.se
+https://urls-app.herokuapp.com/?url=googleonlinesecurity.blogspot.se
