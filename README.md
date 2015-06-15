@@ -1,10 +1,10 @@
-# Feedbag app
+# uri extract
 
-Returns a list of feed URLs.
+Returns a list of URLs.
 
 ## Deploy
 
-    git remote add heroku git@heroku.com:feedbag.git
+    git remote add heroku git@heroku.com:uextract.git
     git push heroku
 
 ## Example usage

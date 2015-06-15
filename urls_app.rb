@@ -1,8 +1,9 @@
-require "feedbag"
 require "sinatra"
 require "sinatra/json"
 require "sinatra/reloader" if development?
 require "haml"
+
+require_relative "lib/urls"
 
 configure do
   enable :inline_templates
@@ -11,9 +12,9 @@ end
 get "/" do
   @url = params[:url].to_s
   unless @url.empty?
-    @feeds = Feedbag.find(@url)
+    @urls = Urls.by_url(@url)
   else
-    @feeds = []
+    @urls = []
   end
   haml :index
 end
@@ -23,7 +24,7 @@ __END__
 @@ layout
 %html
   %head
-    %title Feedbag
+    %title URI Extract
   %body
     = yield
 
@@ -32,22 +33,21 @@ __END__
 - port = [80, 443].include?(request.port) ? "" : ":#{request.port}"
 - url = "#{request.scheme}://#{request.host}#{port}/?url=blog.trello.com"
 %p
-  Returns a list of feed URLs using
+  Returns a list of URLs using Ruby and
   = succeed "." do
-    %a{ href: "https://github.com/damog/feedbag" } Feedbag
+    %a{ href: "https://github.com/twingly/twingly-url" } twingly-url
 
 %p
   Example:
   %a{ href: url }= url
 
 - unless @url.empty?
-  %h2 Feeds
+  %h2 URLs
 
   %ul
-    - @feeds.each do |feed|
-      - url = "https://feedjira.herokuapp.com/?url=#{feed}"
+    - @urls.each do |url|
       %li
         %a{ href: url }= url
 
-  - if @feeds.empty?
-    %p No feeds found.
+  - if @urls.empty?
+    %p No URLs found.

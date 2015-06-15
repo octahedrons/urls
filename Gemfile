@@ -1,8 +1,8 @@
 source "https://rubygems.org"
-ruby "2.1.5"
+ruby "2.2.2"
 
-gem "feedbag"
 gem "sinatra"
 gem "sinatra-contrib"
 gem "unicorn"
 gem "haml"
+gem "twingly-url"
