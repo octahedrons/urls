@@ -16,6 +16,8 @@ module Urls
 
   def by_text(text)
     urls_and_crap = URI.extract(text)
-    urls_and_crap.select { |url| Twingly::URL.validate(url)  }
+    urls_and_crap.
+      select { |url| Twingly::URL.validate(url) }.
+      uniq
   end
 end
