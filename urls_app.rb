@@ -31,6 +31,21 @@ get "/txt" do
   body @urls.join("\n")
 end
 
+post "/" do
+  @text = params[:text]
+  @urls = Urls.by_text(@text)
+
+  case params[:submit]
+  when "json"
+    json @urls
+  when "txt"
+    content_type "text/plain"
+    body @urls.join("\n")
+  else
+    haml :index
+  end
+end
+
 __END__
 
 @@ layout
@@ -53,11 +68,12 @@ __END__
   Example:
   %a{ href: example_url }= example_url
 
-- unless @url.empty?
+- unless @urls.empty?
   %h2 URLs
-  %p
-    %a{ href: "/json?url=#{@url}" } JSON
-    %a{ href: "/txt?url=#{@url}" } Plain text
+  - unless request.request_method == "POST"
+    %p
+      %a{ href: "/json?url=#{@url}" } JSON
+      %a{ href: "/txt?url=#{@url}" } Plain text
 
   %ul
     - @urls.each do |url|
@@ -66,3 +82,12 @@ __END__
 
   - if @urls.empty?
     %p No URLs found.
+
+%p Or paste text with URLs
+
+%form{ method: :post }
+  %p
+    %input{ type: :submit, name: :submit, value: :html }
+    %input{ type: :submit, name: :submit, value: :json }
+    %input{ type: :submit, name: :submit, value: :txt }
+  %textarea{ name: :text, cols: 150, rows: 25 }= @text
