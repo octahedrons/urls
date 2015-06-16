@@ -60,7 +60,9 @@ __END__
 - port = [80, 443].include?(request.port) ? "" : ":#{request.port}"
 - example_url = "#{request.scheme}://#{request.host}#{port}/?url=blog.trello.com"
 %p
-  Returns a list of URLs using Ruby and
+  Returns a list of URLs using
+  %a{ href: "https://github.com/dentarg/urls" } Ruby
+  and
   = succeed "." do
     %a{ href: "https://github.com/twingly/twingly-url" } twingly-url
 
