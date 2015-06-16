@@ -1,4 +1,4 @@
-# uri extract
+# urls
 
 Returns a list of URLs.
 

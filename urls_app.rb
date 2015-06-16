@@ -56,7 +56,7 @@ __END__
 @@ layout
 %html
   %head
-    %title URI Extract
+    %title urls
   %body
     = yield
 
