@@ -11,11 +11,8 @@ end
 
 get "/" do
   @url = params[:url].to_s
-  unless @url.empty?
-    @urls = Urls.by_url(@url)
-  else
-    @urls = []
-  end
+  @urls = Urls.by_url(@url)
+
   haml :index
 end
 
