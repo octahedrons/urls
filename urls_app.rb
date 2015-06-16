@@ -31,7 +31,12 @@ get "/txt" do
   body @urls.join("\n")
 end
 
-post "/" do
+get "/text" do
+  redirect(url("/"))
+end
+
+post "/text" do
+  @url  = false
   @text = params[:text]
   @urls = Urls.by_text(@text)
 
@@ -60,34 +65,41 @@ __END__
 - port = [80, 443].include?(request.port) ? "" : ":#{request.port}"
 - example_url = "#{request.scheme}://#{request.host}#{port}/?url=blog.trello.com"
 %p
-  Returns a list of URLs using
+  %a{ href: "/" } urls
+  returns a list of URLs using
   %a{ href: "https://github.com/dentarg/urls" } Ruby
   and
   = succeed "." do
     %a{ href: "https://github.com/twingly/twingly-url" } twingly-url
-
-%p
   Example:
   %a{ href: example_url }= example_url
 
-- unless @urls.empty?
-  %h2 URLs
-  - unless request.request_method == "POST"
+%p
+  %form
+    %input{ type: :text, name: :url, value: @url, placeholder: :URL, size: 50 }
+    %input{ type: :submit }
+
+- if @urls.empty?
+  %p
+    No URLs found!
+- else
+  - if @url
+    %h2
+      URLs for
+      %code= @url
     %p
       %a{ href: "/json?url=#{@url}" } JSON
       %a{ href: "/txt?url=#{@url}" } Plain text
-
+  - else
+    %h2 URLs
   %ul
     - @urls.each do |url|
       %li
         %a{ href: url }= url
 
-  - if @urls.empty?
-    %p No URLs found.
-
 %p Or paste text with URLs
 
-%form{ method: :post }
+%form{ method: :post, action: "/text" }
   %p
     %input{ type: :submit, name: :submit, value: :html }
     %input{ type: :submit, name: :submit, value: :json }
