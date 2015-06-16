@@ -16,6 +16,21 @@ get "/" do
   haml :index
 end
 
+get "/json" do
+  @url = params[:url].to_s
+  @urls = Urls.by_url(@url)
+
+  json @urls
+end
+
+get "/txt" do
+  @url = params[:url].to_s
+  @urls = Urls.by_url(@url)
+
+  content_type "text/plain"
+  body @urls.join("\n")
+end
+
 __END__
 
 @@ layout
@@ -28,7 +43,7 @@ __END__
 @@ index
 
 - port = [80, 443].include?(request.port) ? "" : ":#{request.port}"
-- url = "#{request.scheme}://#{request.host}#{port}/?url=blog.trello.com"
+- example_url = "#{request.scheme}://#{request.host}#{port}/?url=blog.trello.com"
 %p
   Returns a list of URLs using Ruby and
   = succeed "." do
@@ -36,10 +51,13 @@ __END__
 
 %p
   Example:
-  %a{ href: url }= url
+  %a{ href: example_url }= example_url
 
 - unless @url.empty?
   %h2 URLs
+  %p
+    %a{ href: "/json?url=#{@url}" } JSON
+    %a{ href: "/txt?url=#{@url}" } Plain text
 
   %ul
     - @urls.each do |url|
