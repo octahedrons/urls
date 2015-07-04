@@ -85,13 +85,13 @@ __END__
 - else
   - if @url
     %h2
-      URLs for
+      = "#{@urls.count} URLs for"
       %code= @url
     %p
       %a{ href: "/json?url=#{@url}" } JSON
       %a{ href: "/txt?url=#{@url}" } Plain text
   - else
-    %h2 URLs
+    %h2= "#{@urls.count} URLs"
   %ul
     - @urls.each do |url|
       %li
