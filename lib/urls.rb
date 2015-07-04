@@ -1,4 +1,4 @@
-require "open-uri"
+require "metainspector"
 require "twingly/url"
 
 module Urls
@@ -9,9 +9,14 @@ module Urls
 
     return [] if uri.empty?
 
-    doc = open(uri)
+    options = {
+      warn_level: :store,
+      download_images: false,
+      html_content_only: true,
+    }
 
-    by_text(doc.read)
+    page = MetaInspector.new(uri, options)
+    page.links.external
   end
 
   def by_text(text)
