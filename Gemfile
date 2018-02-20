@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "2.2.2"
+ruby File.read(".ruby-version")
 
 gem "sinatra"
 gem "sinatra-contrib"
