@@ -5,7 +5,7 @@ module Urls
   module_function
 
   def by_url(url)
-    uri = Twingly::URL.parse(url).to_s
+    uri = parse(url, normalize: false).to_s
 
     return [] if uri.empty?
 
@@ -19,12 +19,18 @@ module Urls
     page.links.external
   end
 
-  def by_text(text)
+  def by_text(text, normalize: false)
     urls_and_crap = URI.extract(text)
     urls_and_crap
-      .map { |url| Twingly::URL.parse(url) }
+      .map { |url| parse(url, normalize: normalize) }
       .select { |url| url.valid? }
       .map(&:to_s)
       .uniq
+  end
+
+  def parse(url, normalize:)
+    parsed_url = Twingly::URL.parse(url)
+
+    normalize ? parsed_url.normalized : parsed_url
   end
 end

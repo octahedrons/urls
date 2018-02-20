@@ -38,9 +38,10 @@ end
 post "/text" do
   @url  = false
   @text = params[:text]
-  @urls = Urls.by_text(@text)
+  ext, normalize = params[:submit]&.split(" ")
+  @urls = Urls.by_text(@text, normalize: !!normalize)
 
-  case params[:submit]
+  case ext
   when "json"
     json @urls
   when "txt"
@@ -104,4 +105,8 @@ __END__
     %input{ type: :submit, name: :submit, value: :html }
     %input{ type: :submit, name: :submit, value: :json }
     %input{ type: :submit, name: :submit, value: :txt }
+  %p
+    %input{ type: :submit, name: :submit, value: "html normalized" }
+    %input{ type: :submit, name: :submit, value: "json normalized" }
+    %input{ type: :submit, name: :submit, value: "txt normalized" }
   %textarea{ name: :text, cols: 150, rows: 25 }= @text
