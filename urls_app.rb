@@ -41,6 +41,10 @@ post "/text" do
   ext, normalize = params[:submit]&.split(" ")
   @urls = Urls.by_text(@text, normalize: !!normalize)
 
+  if params[:remove_scheme]
+    @urls = @urls.map { |url| Urls.remove_scheme(url) }
+  end
+
   case ext
   when "json"
     json @urls
@@ -101,12 +105,15 @@ __END__
 %p Or paste text with URLs
 
 %form{ method: :post, action: "/text" }
+  %textarea{ name: :text, cols: 150, rows: 25 }= @text
   %p
-    %input{ type: :submit, name: :submit, value: :html }
-    %input{ type: :submit, name: :submit, value: :json }
-    %input{ type: :submit, name: :submit, value: :txt }
+    %label{ for: :remove_scheme } Remove scheme?
+    %input{ type: :checkbox, name: :remove_scheme, id: :remove_scheme, checked: true }
   %p
     %input{ type: :submit, name: :submit, value: "html normalized" }
     %input{ type: :submit, name: :submit, value: "json normalized" }
     %input{ type: :submit, name: :submit, value: "txt normalized" }
-  %textarea{ name: :text, cols: 150, rows: 25 }= @text
+  %p
+    %input{ type: :submit, name: :submit, value: :html }
+    %input{ type: :submit, name: :submit, value: :json }
+    %input{ type: :submit, name: :submit, value: :txt }

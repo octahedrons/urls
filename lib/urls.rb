@@ -5,7 +5,7 @@ module Urls
   module_function
 
   def by_url(url)
-    uri = parse(url, normalize: false).to_s
+    uri = parse(url).to_s
 
     return [] if uri.empty?
 
@@ -28,7 +28,12 @@ module Urls
       .uniq
   end
 
-  def parse(url, normalize:)
+  def remove_scheme(url)
+    parsed_url = parse(url, normalize: false)
+    url.sub("#{parsed_url.scheme}://", "")
+  end
+
+  def parse(url, normalize: false, remove_scheme: false)
     parsed_url = Twingly::URL.parse(url)
 
     normalize ? parsed_url.normalized : parsed_url
