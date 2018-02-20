@@ -5,7 +5,7 @@ module Urls
   module_function
 
   def by_url(url)
-    uri = Twingly::URL.parse(url).url.to_s
+    uri = Twingly::URL.parse(url).to_s
 
     return [] if uri.empty?
 
@@ -21,8 +21,10 @@ module Urls
 
   def by_text(text)
     urls_and_crap = URI.extract(text)
-    urls_and_crap.
-      select { |url| Twingly::URL.validate(url) }.
-      uniq
+    urls_and_crap
+      .map { |url| Twingly::URL.parse(url) }
+      .select { |url| url.valid? }
+      .map(&:to_s)
+      .uniq
   end
 end
