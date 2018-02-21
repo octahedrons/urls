@@ -45,6 +45,10 @@ post "/text" do
     @urls.map! { |url| Urls.remove_scheme(url) }
   end
 
+  if params[:sort]
+    @urls.sort!
+  end
+
   case ext
   when "json"
     json @urls
@@ -109,6 +113,9 @@ __END__
   %p
     %label{ for: :remove_scheme } Remove scheme?
     %input{ type: :checkbox, name: :remove_scheme, id: :remove_scheme, checked: true }
+
+    %label{ for: :sort } Sort?
+    %input{ type: :checkbox, name: :sort, id: :sort, checked: true }
   %p
     %input{ type: :submit, name: :submit, value: "html normalized" }
     %input{ type: :submit, name: :submit, value: "json normalized" }
