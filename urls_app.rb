@@ -42,7 +42,7 @@ post "/text" do
   @urls = Urls.by_text(@text, normalize: !!normalize)
 
   if params[:remove_scheme]
-    @urls = @urls.map { |url| Urls.remove_scheme(url) }
+    @urls.map! { |url| Urls.remove_scheme(url) }
   end
 
   case ext

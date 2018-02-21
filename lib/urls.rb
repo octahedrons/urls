@@ -1,5 +1,6 @@
 require "metainspector"
 require "twingly/url"
+require "twingly/url/utilities"
 
 module Urls
   module_function
@@ -20,7 +21,7 @@ module Urls
   end
 
   def by_text(text, normalize: false)
-    urls_and_crap = URI.extract(text)
+    urls_and_crap = Twingly::URL::Utilities.extract_valid_urls(text)
     urls_and_crap
       .map { |url| parse(url, normalize: normalize) }
       .select { |url| url.valid? }
