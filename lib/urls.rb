@@ -34,7 +34,7 @@ module Urls
     url.sub("#{parsed_url.scheme}://", "")
   end
 
-  def parse(url, normalize: false, remove_scheme: false)
+  def parse(url, normalize: false)
     parsed_url = Twingly::URL.parse(url)
 
     normalize ? parsed_url.normalized : parsed_url
