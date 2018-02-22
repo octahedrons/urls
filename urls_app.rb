@@ -1,3 +1,4 @@
+require "dyno_metadata"
 require "sinatra"
 require "sinatra/json"
 require "sinatra/reloader" if development?
@@ -124,3 +125,9 @@ __END__
     %input{ type: :submit, name: :submit, value: :html }
     %input{ type: :submit, name: :submit, value: :json }
     %input{ type: :submit, name: :submit, value: :txt }
+
+%p
+  %code
+    Running urls
+    %a{ href: "https://github.com/dentarg/urls/commit/#{DynoMetadata.commit}" }= DynoMetadata.release_version
+    = " (#{DynoMetadata.release_created_at})"

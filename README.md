@@ -10,8 +10,7 @@ Start
 
 ## Deploy
 
-    git remote add heroku git@heroku.com:urls-apps.git
-    git push heroku
+    git push # to github
 
 ## Example usage
 

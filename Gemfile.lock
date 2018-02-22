@@ -6,6 +6,7 @@ GEM
     backports (3.11.1)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
+    dyno_metadata (0.0.2)
     faraday (0.14.0)
       multipart-post (>= 1.2, < 3)
     faraday-cookie_jar (0.0.6)
@@ -75,6 +76,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dyno_metadata
   haml
   metainspector
   sinatra
