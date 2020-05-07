@@ -3,7 +3,7 @@ ruby File.read(".ruby-version")
 
 gem "sinatra"
 gem "sinatra-contrib"
-gem "unicorn"
+gem "puma"
 gem "haml"
 gem "twingly-url"
 gem "metainspector"

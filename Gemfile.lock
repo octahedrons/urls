@@ -27,7 +27,6 @@ GEM
     io-console (0.5.6)
     irb (1.2.4)
       reline (>= 0.0.1)
-    kgio (2.9.2)
     metainspector (5.4.1)
       addressable (~> 2.5)
       faraday (~> 0.11)
@@ -43,13 +42,15 @@ GEM
     multipart-post (2.0.0)
     mustermann (1.0.3)
     nesty (1.0.2)
+    nio4r (2.5.2)
     nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     public_suffix (3.0.2)
+    puma (4.3.3)
+      nio4r (~> 2.0)
     rack (2.0.8)
     rack-protection (2.0.5)
       rack
-    raindrops (0.13.0)
     reline (0.1.4)
       io-console (~> 0.5)
     sinatra (2.0.5)
@@ -72,10 +73,6 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
-    unicorn (4.8.3)
-      kgio (~> 2.6)
-      rack
-      raindrops (~> 0.7)
 
 PLATFORMS
   ruby
@@ -85,10 +82,10 @@ DEPENDENCIES
   haml
   irb
   metainspector
+  puma
   sinatra
   sinatra-contrib
   twingly-url
-  unicorn
 
 RUBY VERSION
    ruby 2.6.6p146
