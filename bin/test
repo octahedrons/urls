@@ -10,7 +10,7 @@ gem -v
 
 # install app dependencies
 bundle install
-which foreman || gem install --no-document foreman
+which foreman || gem install --no-document foreman
 
 # start app and wait for it
 foreman start &
