@@ -3,6 +3,11 @@
 # echo commands
 set -x
 
+# info
+ruby -v
+bundle -v
+gem -v
+
 # install app dependencies
 bundle install
 which foreman || gem install --no-document foreman
