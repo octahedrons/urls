@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# echo commands
+set -x
+
+# install app dependencies
+bundle install
+which foreman || gem install --no-document foreman
+
+# start app and wait for it
+foreman start &
+sleep 3
+
+# run the test and save the result
+# can't use "localhost" because that's a NullURL in twingly/url
+curl --silent --fail "http://localhost:5000/?url=localhost.v4.dentarg.net:5000" | grep -q "3 URLs for"
+test_result=$?
+
+# stop app
+kill $!
+wait $!
+
+exit $test_result

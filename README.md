@@ -8,6 +8,15 @@ Start
 
     foreman start
 
+Test
+
+    bin/test
+
+Debug
+
+    bundle exec irb
+    Bundler.require
+
 ## Deploy
 
     git push # to github
