@@ -1,8 +1,9 @@
+require "cgi"
 require "dyno_metadata"
+require "haml"
 require "sinatra"
 require "sinatra/json"
 require "sinatra/reloader" if development?
-require "haml"
 
 require_relative "lib/urls"
 
@@ -110,7 +111,7 @@ __END__
 %p Or paste text with URLs
 
 %form{ method: :post, action: "/text" }
-  %textarea{ name: :text, cols: 150, rows: 25 }= @text
+  %textarea{ name: :text, cols: 150, rows: 25 }= CGI.escape_element(@text.to_s, "textarea")
   %p
     %label{ for: :remove_scheme } Remove scheme?
     %input{ type: :checkbox, name: :remove_scheme, id: :remove_scheme, checked: true }
