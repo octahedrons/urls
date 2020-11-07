@@ -2,6 +2,7 @@ name: Test
 
 on:
   push:
+  pull_request:
   schedule:
     - cron:  "0 0 1 * *" # At 00:00 on day-of-month 1
 
