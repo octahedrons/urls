@@ -16,13 +16,37 @@ which foreman || gem install --no-document foreman
 foreman start &
 sleep 3
 
-# run the test and save the result
+# run tests and save the result
+
+# tests Urls.by_url
 # can't use "localhost" because that's a NullURL in twingly/url
 curl --silent --fail "http://localhost:5000/?url=localhost.v4.dentarg.net:5000" | grep -q "3 URLs for"
-test_result=$?
+test1=$?
+
+# tests Urls.by_text
+curl --silent --fail --data \
+ 'text=http://www.example.org https://google.com blog.trello.com' "http://localhost:5000/text" | grep -q "3 URLs"
+test2=$?
 
 # stop app
 kill $!
 wait $!
 
-exit $test_result
+set +x
+
+FAILURES=0
+
+fail?(){
+  local testno=$1
+  local result=$2
+
+  if [ $result -ne 0 ]; then
+    ((FAILURES += 1))
+    echo "Test $testno failed" 1>&2
+  fi
+}
+
+fail? 1 $test1
+fail? 2 $test2
+
+[[ $FAILURES -gt 0 ]] && exit 1 || true
