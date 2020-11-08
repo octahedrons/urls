@@ -80,7 +80,7 @@ PLATFORMS
 
 DEPENDENCIES
   dyno_metadata
-  haml
+  haml (< 6)
   irb
   metainspector
   puma
