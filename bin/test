@@ -3,6 +3,8 @@
 # echo commands
 set -x
 
+RUBYOPT=-W:deprecated
+
 # info
 ruby -v
 bundle -v
