@@ -11,6 +11,10 @@ configure do
   enable :inline_templates
 end
 
+before do
+  @text = nil
+end
+
 get "/" do
   @url = params[:url].to_s
   @urls = Urls.by_url(@url)
