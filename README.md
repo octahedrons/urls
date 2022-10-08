@@ -23,4 +23,4 @@ Debug
 
 ## Example usage
 
-https://urls-app.herokuapp.com/?url=googleonlinesecurity.blogspot.se
+https://urls.fly.dev/?url=googleonlinesecurity.blogspot.se
