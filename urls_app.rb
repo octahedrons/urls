@@ -6,6 +6,9 @@ require "sinatra/json"
 require "sinatra/reloader" if development?
 
 require_relative "lib/urls"
+require_relative "lib/haml_helpers"
+
+helpers Sinatra::HamlHelpers if Haml::VERSION >= "6.0.0"
 
 configure do
   enable :inline_templates
