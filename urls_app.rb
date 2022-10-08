@@ -77,7 +77,7 @@ __END__
     %meta{ name: "color-scheme", content: "dark light" }
     %title urls
   %body
-    = yield
+    != yield
 
 @@ index
 
@@ -88,7 +88,7 @@ __END__
   returns a list of URLs using
   %a{ href: "https://github.com/dentarg/urls" } Ruby
   and
-  = succeed "." do
+  != succeed "." do
     %a{ href: "https://github.com/twingly/twingly-url" } twingly-url
   Example:
   %a{ href: example_url }= example_url
@@ -104,7 +104,7 @@ __END__
 - else
   - if @url
     %h2
-      = "#{@urls.count} URLs for"
+      != "#{@urls.count} URLs for"
       %code= @url
     %p
       %a{ href: "/json?url=#{@url}" } JSON
