@@ -71,6 +71,7 @@ __END__
 @@ layout
 %html
   %head
+    %meta{ name: "color-scheme", content: "dark light" }
     %title urls
   %body
     = yield
