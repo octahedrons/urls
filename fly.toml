@@ -5,6 +5,7 @@ app = "urls"
 
 [env]
   PORT = "8080"
+  RACK_ENV = "production"
 
 [[services]]
   internal_port = 8080
