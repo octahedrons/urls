@@ -6,6 +6,7 @@ app = "urls"
 [env]
   PORT = "8080"
   RACK_ENV = "production"
+  FLY_FOO = "fly foo"
 
 [[services]]
   internal_port = 8080
