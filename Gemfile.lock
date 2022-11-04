@@ -5,7 +5,7 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    dyno_metadata (0.0.3)
+    dyno_metadata (0.0.4)
     faraday (2.6.0)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
