@@ -25,7 +25,7 @@ GEM
     faraday-retry (2.0.0)
       faraday (~> 2.0)
     fastimage (2.2.6)
-    haml (6.0.5)
+    haml (6.0.8)
       temple (>= 0.8.2)
       thor
       tilt
@@ -76,7 +76,7 @@ GEM
       rack-protection (= 3.0.2)
       sinatra (= 3.0.2)
       tilt (~> 2.0)
-    temple (0.8.2)
+    temple (0.9.1)
     thor (1.2.1)
     tilt (2.0.11)
     twingly-url (7.0.1)
