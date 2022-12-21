@@ -31,8 +31,8 @@ GEM
       tilt
     http-cookie (1.0.5)
       domain_name (~> 0.5)
-    io-console (0.5.11)
-    irb (1.4.2)
+    io-console (0.6.0)
+    irb (1.6.2)
       reline (>= 0.3.0)
     metainspector (5.13.0)
       addressable (~> 2.8)
@@ -62,7 +62,7 @@ GEM
     rack (2.2.4)
     rack-protection (3.0.2)
       rack
-    reline (0.3.1)
+    reline (0.3.2)
       io-console (~> 0.5)
     ruby2_keywords (0.0.5)
     sinatra (3.0.2)
