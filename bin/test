@@ -3,6 +3,7 @@
 # echo commands
 set -x
 
+PORT=${PORT:-8080}
 RUBYOPT=-W:deprecated
 
 # info
@@ -12,22 +13,22 @@ gem -v
 
 # install app dependencies
 bundle install
-which foreman || gem install --no-document foreman
+which overman || gem install --no-document overman
 
 # start app and wait for it
-foreman start &
+overman start &
 sleep 3
 
 # run tests and save the result
 
 # tests Urls.by_url
 # can't use "localhost" because that's a NullURL in twingly/url
-curl --silent --fail "http://localhost:5000/?url=localhost.v4.dentarg.net:5000" | grep -q "3 URLs for"
+curl --silent --fail "http://localhost:${PORT}/?url=localhost.v4.dentarg.net:${PORT}" | grep -q "3 URLs for"
 test1=$?
 
 # tests Urls.by_text
 curl --silent --fail --data \
- 'text=http://www.example.org https://google.com blog.trello.com' "http://localhost:5000/text" | grep -q "3 URLs"
+ 'text=http://www.example.org https://google.com blog.trello.com' "http://localhost:${PORT}/text" | grep -q "3 URLs"
 test2=$?
 
 # stop app

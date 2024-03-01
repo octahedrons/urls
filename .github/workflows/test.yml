@@ -14,4 +14,5 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true
-    - run: bin/test
+    - run: |
+        docker run --rm -it --env PORT=8080 $(docker build . -q) bin/test

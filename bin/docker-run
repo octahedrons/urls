@@ -1,0 +1,10 @@
+#!/bin/bash
+
+TAG=${TAG:-urls}
+PORT=${PORT:-8080}
+
+# echo commands
+set -x
+
+docker build . -t $TAG
+docker run --rm -it --publish ${PORT}:${PORT} --env PORT=${PORT} $TAG
