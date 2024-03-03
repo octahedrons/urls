@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          echo "RUBY_VERSION=$($(cat .ruby-version)" >> $GITHUB_ENV
+          echo "RUBY_VERSION=$(cat .ruby-version)" >> $GITHUB_ENV
       - uses: dentarg/fly@main
         with:
           build-args: "RUBY_VERSION=${{ env.RUBY_VERSION }}"
