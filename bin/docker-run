@@ -5,6 +5,6 @@ PORT=${PORT:-8080}
 
 # echo commands
 set -x
+set -e
 
-docker build . -t $TAG
-docker run --rm -it --publish ${PORT}:${PORT} --env PORT=${PORT} $TAG
+docker run --rm -it --publish ${PORT}:${PORT} --env PORT=${PORT} $TAG "$@"

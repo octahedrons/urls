@@ -1,5 +1,4 @@
-# Make sure RUBY_VERSION matches the Ruby version in .ruby-version
-ARG RUBY_VERSION=3.2.3
+ARG RUBY_VERSION
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
 # The app lives here

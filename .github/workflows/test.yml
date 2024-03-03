@@ -15,4 +15,4 @@ jobs:
       with:
         bundler-cache: true
     - run: |
-        docker run --rm --env PORT=8080 $(docker build . -q) bin/test
+        TAG=$(./bin/docker-build --quiet) ./bin/docker-run bin/test
