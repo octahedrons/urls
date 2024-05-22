@@ -1,0 +1,12 @@
+#!/bin/bash
+
+TAG=${TAG:-urls}
+PORT=${PORT:-8080}
+
+test -t 1 && USE_TTY="--tty --interactive" || true
+
+# echo commands
+set -x
+set -e
+
+docker run --rm ${USE_TTY:-} --publish ${PORT}:${PORT} --env PORT=${PORT} $TAG "$@"

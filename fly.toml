@@ -1,8 +1,5 @@
 app = "urls"
 
-[build]
-  builder = "heroku/buildpacks:20"
-
 [env]
   PORT = "8080"
   RACK_ENV = "production"
