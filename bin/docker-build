@@ -1,0 +1,5 @@
+#!/bin/bash
+
+TAG=${TAG:-urls}
+
+docker build . --build-arg RUBY_VERSION=$(cat .ruby-version) --tag $TAG "$@"

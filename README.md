@@ -6,15 +6,26 @@ Returns a list of URLs.
 
 Start
 
-    foreman start
+```bash
+overman start
+
+# in docker
+bin/docker-run
+```
 
 Test
 
-    bin/test
+```bash
+bin/test
 
+# in docker
+docker run --rm -it -e PORT=8080 $(docker build . -q) bin/test
+```
 ## Deploy
 
-    git push # to github
+```bash
+git push # to github
+```
 
 ## Example usage
 
