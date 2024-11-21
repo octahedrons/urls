@@ -4,6 +4,7 @@
 set -x
 
 PORT=${PORT:-8080}
+RACK_ENV=test
 RUBYOPT=-W:deprecated
 
 # info
