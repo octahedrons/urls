@@ -3,9 +3,9 @@
 # echo commands
 set -x
 
-PORT=${PORT:-8080}
-RACK_ENV=test
-RUBYOPT=-W:deprecated
+export PORT=${PORT:-8080}
+export RACK_ENV=test
+export RUBYOPT=-W:deprecated
 
 # info
 ruby -v
