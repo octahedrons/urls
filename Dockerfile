@@ -21,7 +21,8 @@ FROM base as build
 RUN apt-get install --no-install-recommends -y \
     build-essential \
     git \
-    pkg-config
+    pkg-config \
+    zlib1g-dev
 
 # Install application gems
 COPY Gemfile Gemfile.lock .ruby-version ./
